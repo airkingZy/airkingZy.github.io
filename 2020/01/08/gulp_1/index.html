@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="gulp 源码阅读笔记（一）API-src()篇先看看官方文档  Creates a stream for reading Vinyl objects from the file system.Note: BOMs (byte order marks) have no purpose in UTF-8 and will be removed from UTF-8 files read by src">
+  <meta name="description" content="gulp 源码阅读笔记 gulp 是一个构建工具，基于 Node.js 的平台运行，使用的是 commonJs 的模块化语法。  gulp.series 对应的是同步任务，从左到右，依次执行任务。时间长  gulp.parallel 对应的是异步任务，效率高，时间短。  gulp.src 表明文件从哪里读取  gulp.dest 表明文件输出到哪   1. Stream使用 gulp 对项目进行构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gulp源码阅读笔记（一）">
+<meta property="og:title" content="gulp源码阅读笔记（">
 <meta property="og:url" content="https://blog.eloopcode.cn/2020/01/08/gulp_1/index.html">
 <meta property="og:site_name" content="zy-blog">
-<meta property="og:description" content="gulp 源码阅读笔记（一）API-src()篇先看看官方文档  Creates a stream for reading Vinyl objects from the file system.Note: BOMs (byte order marks) have no purpose in UTF-8 and will be removed from UTF-8 files read by src">
+<meta property="og:description" content="gulp 源码阅读笔记 gulp 是一个构建工具，基于 Node.js 的平台运行，使用的是 commonJs 的模块化语法。  gulp.series 对应的是同步任务，从左到右，依次执行任务。时间长  gulp.parallel 对应的是异步任务，效率高，时间短。  gulp.src 表明文件从哪里读取  gulp.dest 表明文件输出到哪   1. Stream使用 gulp 对项目进行构">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-08T14:11:53.000Z">
-<meta property="article:modified_time" content="2020-01-08T16:37:15.531Z">
+<meta property="article:modified_time" content="2020-03-01T08:34:42.024Z">
 <meta property="article:author" content="zy">
 <meta property="article:tag" content="-gulp -javascript">
 <meta name="twitter:card" content="summary">
@@ -71,7 +71,7 @@
   };
 </script>
 
-  <title>gulp源码阅读笔记（一） | zy-blog</title>
+  <title>gulp源码阅读笔记（ | zy-blog</title>
   
 
 
@@ -171,7 +171,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/userlogo.jpg">
       <meta itemprop="name" content="zy">
-      <meta itemprop="description" content="zystyle@gmail.com">
+      <meta itemprop="description" content="zystylish@gmail.com">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          gulp源码阅读笔记（一）
+          gulp源码阅读笔记（
         </h1>
 
         <div class="post-meta">
@@ -196,7 +196,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-09 00:37:15" itemprop="dateModified" datetime="2020-01-09T00:37:15+08:00">2020-01-09</time>
+                <time title="Modified: 2020-03-01 16:34:42" itemprop="dateModified" datetime="2020-03-01T16:34:42+08:00">2020-03-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,13 +221,56 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="gulp-源码阅读笔记（一）API-src-篇"><a href="#gulp-源码阅读笔记（一）API-src-篇" class="headerlink" title="gulp 源码阅读笔记（一）API-src()篇"></a>gulp 源码阅读笔记（一）API-src()篇</h4><p>先看看官方文档</p>
-<blockquote>
-<p>Creates a stream for reading Vinyl objects from the file system.<br>Note: BOMs (byte order marks) have no purpose in UTF-8 and will be removed from UTF-8 files read by src(), unless disabled using the removeBOM option.(<a href="https://gulpjs.com/docs/en/api/src" target="_blank" rel="noopener">https://gulpjs.com/docs/en/api/src</a>)</p>
-</blockquote>
-<blockquote>
-<p>创建一个流，用于从文件系统读取 <code>Vinyl</code> 对象。<br><strong>注</strong>：BOMs(字节顺序标记)在 UTF-8 中没有任何作用，除非使用 <code>&gt; removeBOM</code>选项禁用，否则 <code>src()</code>将从读取的 UTF-8 文件中删除 BOMs。(<a href="https://www.gulpjs.com.cn/docs/api/src/" target="_blank" rel="noopener">https://www.gulpjs.com.cn/docs/api/src/</a>)</p>
-</blockquote>
+        <h3 id="gulp-源码阅读笔记"><a href="#gulp-源码阅读笔记" class="headerlink" title="gulp 源码阅读笔记"></a>gulp 源码阅读笔记</h3><ol>
+<li><p>gulp 是一个构建工具，基于 Node.js 的平台运行，使用的是 commonJs 的模块化语法。</p>
+</li>
+<li><p>gulp.series 对应的是同步任务，从左到右，依次执行任务。时间长</p>
+</li>
+<li><p>gulp.parallel 对应的是异步任务，效率高，时间短。</p>
+</li>
+<li><p>gulp.src 表明文件从哪里读取</p>
+</li>
+<li><p>gulp.dest 表明文件输出到哪</p>
+</li>
+</ol>
+<h3 id="1-Stream"><a href="#1-Stream" class="headerlink" title="1. Stream"></a>1. Stream</h3><p>使用 gulp 对项目进行构建的时候，我们会使用 gulp.src 接口将匹配到的文件转为 stream（流）的形式，再通过 .pipe() 接口对其进行链式加工处理</p>
+<p>先上一段简单的代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line">http</span><br><span class="line">  .createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这个简单的启动 http 服务，里面就有 2 个 stream， req 和 res 也属于 Stream 的消费接口（前者为 Readable Stream，后者为 Writable Stream）</p>
+<p>模拟一个数据从服务端返回到客户端（不使用流）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  fs.readFile(__dirname + <span class="string">"/data.txt"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    res.end(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这样做的话，每次 fs.readFile 都会把文件缓存到内存中去，然后才开始把数据吐给用户，这时候如果用户的网速慢，请求数量太多的时候，就会高额的占用了服务器资源。</p>
+<p>改成使用流的方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> stream = fs.createReadStream(__dirname + <span class="string">"/data.txt"</span>);</span><br><span class="line">  stream.pipe(res);</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这样做的话就是使用内存创建一个可读的流，通过 .pipe() 接口来监听其 data 和 end 事件，并把 data.txt （的可读流）拆分成一小块一小块的数据（chunks），像流水一样源源不断地吐给客户端，而不再需要等待整个文件都加载到内存后才发送数据。</p>
+<h4 id="1-1-Stream-的分类"><a href="#1-1-Stream-的分类" class="headerlink" title="1.1 Stream 的分类"></a>1.1 Stream 的分类</h4><ul>
+<li>Readable Streams（即可读流，通过 .pipe 接口可以将其数据传递给一个 writable、transform 或者 duplex 流：）</li>
+<li>Writable Streams （可写）流接口是对写入数据的目标的抽象</li>
+<li>Transform Streams Transform Stream 是在继承了 Duplex Streams 的基础上再进行了扩展，它可以把写入的数据和输出的数据，通过 ._transform 接口关联起来。</li>
+<li>Duplex Streams Duplex 流就是既能读又能写的一类流，它继承了 Readable 和 Writable 的接口。</li>
+<li>Classic Streams</li>
+</ul>
+<h4 id="1-2-Object-Mode"><a href="#1-2-Object-Mode" class="headerlink" title="1.2 Object Mode"></a>1.2 Object Mode</h4><p>对于可读流来说，push(data) 时，data 的类型只能是 String 或 Buffer，且消耗时 data 事件输出的数据类型都为 Buffer；</p>
+<p>对于可写流来说，write(data) 时，data 的类型也只能是 String 或 Buffer，_write(data) 调用时所传进来的 data 类型都为 Buffer。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> objectModeWritable = Writable(&#123; <span class="attr">objectMode</span>: <span class="literal">true</span> &#125;); <span class="comment">//为了增强数据类型的灵活性，无论是可读流或是可写流，只需要往其构造函数里传入配置参数“&#123; objectMode: true &#125;”，便可往流里传入/获取任意类型（null除外）的数据</span></span><br><span class="line"></span><br><span class="line">objectModeWritable._write = <span class="function">(<span class="params">chunck, enc, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 输出打印</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span> chunck);</span><br><span class="line">  <span class="built_in">console</span>.log(chunck);</span><br><span class="line">  process.nextTick(next);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">objectModeWritable.write(<span class="string">"Happy Chinese Year"</span>);</span><br><span class="line">objectModeWritable.write(&#123; <span class="attr">year</span>: <span class="number">2017</span> &#125;);</span><br><span class="line">objectModeWritable.end(<span class="number">2017</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-through2"><a href="#1-3-through2" class="headerlink" title="1.3 through2"></a>1.3 through2</h4><p>readable-stream 虽然提供了一个 Streams 的兼容方案，但我们也希望能对 Stream 复杂的 API 进行精简。</p>
+<p>而 through2 便基于 readable-stream 对 Stream 接口进行了封装，并提供了更简单和灵活的方法。</p>
+<p>through2 会为你生成 Transform Streams（貌似旧版本是 Duplex Streams）来处理任意你想使用的流 —— 如前文介绍，相比其它流，Transform 流处理起数据会更加灵活方便。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"><span class="keyword">const</span> through2 = <span class="built_in">require</span>(<span class="string">"through2"</span>);</span><br><span class="line"><span class="keyword">const</span> csv2 = <span class="built_in">require</span>(<span class="string">"csv2"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> all = [];</span><br><span class="line"></span><br><span class="line">fs.createReadStream(<span class="string">"list.csv"</span>)</span><br><span class="line">  .pipe(csv2())</span><br><span class="line">  <span class="comment">// through2.obj(fn) 是 through2(&#123; objectMode: true &#125;, fn) 的简易封装</span></span><br><span class="line">  .pipe(</span><br><span class="line">    through2.obj(<span class="function"><span class="keyword">function</span>(<span class="params">chunk, enc, callback</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> data = &#123;</span><br><span class="line">        name: chunk[<span class="number">0</span>],</span><br><span class="line">        sex: chunk[<span class="number">1</span>],</span><br><span class="line">        addr: chunk[<span class="number">2</span>]</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">this</span>.push(data);</span><br><span class="line"></span><br><span class="line">      callback();</span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">  .on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    all.push(data);</span><br><span class="line">  &#125;)</span><br><span class="line">  .on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(all);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>对比原生的 Stream API，through2 简洁了不少，加上有 readable-stream 依赖加持，也很好理解为何像 gulp 及其插件都会使用 through2 来操作和处理 stream 了。</p>
+<h3 id="2-vinyl-fs"><a href="#2-vinyl-fs" class="headerlink" title="2. vinyl-fs"></a>2. vinyl-fs</h3><p>vinyl-fs 其实是在 vinyl 模块的基础上做了进一步的封装</p>
+<p>Vinyl 可以看做一个文件描述器，通过它可以轻松构建单个文件的元数据（metadata object）描述对象,可以创建一个文件描述对象，通过接口可以取得该文件所对应的数据（Buffer 类型）、cwd 路径、文件名等等,虽然可以很方便地来描述一个文件、设置或获取文件的内容，但还没能便捷地与文件系统进行接入,Vinyl-fs 就是实现这种需求的一个 Vinyl 适配器</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] gulp 源码解析（一）—— Stream 详解 <a href="https://www.cnblogs.com/vajoy/p/6349817.html" target="_blank" rel="noopener">https://www.cnblogs.com/vajoy/p/6349817.html</a></p>
+<p>[2] Stream API Doc - <a href="https://nodejs.org/api/stream.html" target="_blank" rel="noopener">https://nodejs.org/api/stream.html</a></p>
+<p>[3] stream-handbook - <a href="https://github.com/substack/stream-handbook" target="_blank" rel="noopener">https://github.com/substack/stream-handbook</a></p>
+<p>[4] Node.js Stream - 基础篇 - <a href="http://www.cnblogs.com/zapple/p/5759670.html" target="_blank" rel="noopener">http://www.cnblogs.com/zapple/p/5759670.html</a></p>
+<p>[5] Why I don’t use Node’s core ‘stream’ module - <a href="https://r.va.gg/2014/06/why-i-dont-use-nodes-core-stream-" target="_blank" rel="noopener">https://r.va.gg/2014/06/why-i-dont-use-nodes-core-stream-</a></p>
+<p>[6] gulp 源码解析（二）—— vinyl-fs <a href="https://www.cnblogs.com/vajoy/p/6357476.html" target="_blank" rel="noopener">https://www.cnblogs.com/vajoy/p/6357476.html</a></p>
 
     </div>
 
@@ -249,10 +292,7 @@
     <a href="/2020/01/04/categories/" rel="prev" title="nestJS 笔记（一）了解分析一下 nest-cli 构建的项目">
       <i class="fa fa-chevron-left"></i> nestJS 笔记（一）了解分析一下 nest-cli 构建的项目
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/11/vue-component/" rel="next" title="构建一个vue组件模版插入lerna项目">
-      构建一个vue组件模版插入lerna项目 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -312,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#gulp-源码阅读笔记（一）API-src-篇"><span class="nav-number">1.</span> <span class="nav-text">gulp 源码阅读笔记（一）API-src()篇</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#gulp-源码阅读笔记"><span class="nav-number">1.</span> <span class="nav-text">gulp 源码阅读笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Stream"><span class="nav-number">2.</span> <span class="nav-text">1. Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-Stream-的分类"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 Stream 的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Object-Mode"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 Object Mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-through2"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 through2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-vinyl-fs"><span class="nav-number">3.</span> <span class="nav-text">2. vinyl-fs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number"></span> <span class="nav-text">Reference</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -321,23 +361,23 @@
     <img class="site-author-image" itemprop="image" alt="zy"
       src="/images/userlogo.jpg">
   <p class="site-author-name" itemprop="name">zy</p>
-  <div class="site-description" itemprop="description">zystyle@gmail.com</div>
+  <div class="site-description" itemprop="description">zystylish@gmail.com</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
